@@ -29,6 +29,9 @@
 
 目的: アプローチ漏れをゼロにし、営業効率を最大化します。
 押下すると、対象案件が表示されます。
+<img width="599" height="116" alt="image" src="https://github.com/user-attachments/assets/e1e8fc17-900b-4233-8b33-ce5232ebe145" />
+
+
 <img width="1070" height="988" alt="image" src="https://github.com/user-attachments/assets/e1558044-e2ef-4028-9f8c-1d396835ecfe" />
 
 
@@ -38,7 +41,8 @@
 集計条件: 完了予定日（expected_closing_date）が 当月中 かつ未完了案件の金額を合計。
 
 技術点: whereMonth や whereYear を用いた動的なクエリ発行。
-<img width="499" height="325" alt="image" src="https://github.com/user-attachments/assets/e0ad2a3f-73f5-4bf1-8aa8-283e6c763c92" />
+<img width="846" height="131" alt="image" src="https://github.com/user-attachments/assets/1316c8ce-13c6-4f36-9d97-18f026c89b39" />
+
 
 
 ### 期限切れ案件の警告
@@ -46,6 +50,8 @@
 抽出条件: 完了予定日が過ぎているにもかかわらず、ステータスが「完了」になっていない案件。
 
 押下すると、対象案件が表示されます。
+<img width="828" height="167" alt="image" src="https://github.com/user-attachments/assets/583fe7dc-409e-4442-9dd0-4bcab69bcb9e" />
+
 <img width="1070" height="988" alt="image" src="https://github.com/user-attachments/assets/6690b602-93f5-44a3-9144-899cd4aa346a" />
 
 
