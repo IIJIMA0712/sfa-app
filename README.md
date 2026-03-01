@@ -28,7 +28,7 @@
 抽出条件: 完了（受注・失注）以外、かつ最終活動日（last_activity_at）から30 日以上経過 した担当案件を抽出。
 
 目的: アプローチ漏れをゼロにし、営業効率を最大化します。
-押下すると、対象案件が表示されます。
+カードをクリックすることで、対象案件の一覧へダイレクトに遷移し、即座にアクションへ移れる導線を設計しました。
 <img width="599" height="116" alt="image" src="https://github.com/user-attachments/assets/e1e8fc17-900b-4233-8b33-ce5232ebe145" />
 
 
@@ -49,7 +49,7 @@
 
 抽出条件: 完了予定日が過ぎているにもかかわらず、ステータスが「完了」になっていない案件。
 
-押下すると、対象案件が表示されます。
+カードをクリックすることで、対象案件の一覧へダイレクトに遷移し、即座にアクションへ移れる導線を設計しました。
 <img width="828" height="167" alt="image" src="https://github.com/user-attachments/assets/583fe7dc-409e-4442-9dd0-4bcab69bcb9e" />
 
 <img width="1070" height="988" alt="image" src="https://github.com/user-attachments/assets/6690b602-93f5-44a3-9144-899cd4aa346a" />
@@ -70,7 +70,7 @@
 ## 3.案件詳細画面
 
  ### 期限切れ：完了予定日が過ぎているにもかかわらず、ステータスが「完了」になっていない案件
- ### 放置(経過日)：完了（受注・失注）以外、かつ最終活動日から30 日以上経過 した担当案件
+ ### 放置(経過日)：完了（受注・失注）以外、かつ最終活動日から30日以上経過 した担当案件
   <img width="1070" height="988" alt="image" src="https://github.com/user-attachments/assets/08f30337-fbb7-4d02-93c3-9229a92d3aca" />
 
 ## 4.担当案件管理画面
@@ -87,8 +87,8 @@
 #💡 こだわったポイント
 
 ## 1. Observer パターンによる自動ログ生成
-   ステータス変更を検知してログを生成する際、Controller にロジックを記述せず、
-   Laravel の Observer を採用しました。
+   ステータス変更を検知してログを生成する際、Controller にロジックを記述せず、Laravel の Observer を採用しました。
+   コントローラーに依存しない設計にすることで、将来的にAPI経由やバッチ処理でステータスが更新された場合でも、漏れなくログが記録される堅牢性を重視しました。
 
 メリット: ビジネスロジックの肥大化を防ぐ（疎結合）とともに、確実にログが残る堅牢性を確保。
 
@@ -107,7 +107,7 @@ Bash
 
 # 1. クローン
 
-git clone [[リポジトリ URL](https://github.com/IIJIMA0712/sfa-app)]
+git clone https://github.com/IIJIMA0712/sfa-app
 cd sfa-app
 
 # 2. 依存関係のインストール（Docker 上の Composer を利用）
