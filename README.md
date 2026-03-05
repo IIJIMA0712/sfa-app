@@ -5,6 +5,19 @@
 「誰が、いつ、どの案件を動かしたか」をリアルタイムで把握し、
 放置案件や期限切れ案件を未然に防ぐことを目的として開発しました。
 
+# 🌐 デモサイト
+本プロジェクトは、AWS上にDocker環境を構築してデプロイしています。
+
+[デモサイトはこちら](http://15.134.223.66)
+
+- **テスト用ログイン情報(管理者)**:
+  - メールアドレス: `test@example.com` （※Seederで作成した実際のアドレスを記載）
+  - パスワード: `password`
+- **テスト用ログイン情報(一般ユーザー)**:
+  - メールアドレス: `test@example.com` （※Seederで作成した実際のアドレスを記載）
+  - パスワード: `password`
+
+
 # 🛠 使用技術
 バックエンド: Laravel 11 (PHP 8.3)
 
@@ -12,9 +25,11 @@
 
 データベース: MySQL 8.0
 
-インフラストラクチャー: Laravel Sail (Docker)
+インフラストラクチャー: AWS (EC2 / t3.micro), Docker / Laravel Sail
 
 ツール: Vite, Laravel Breeze (Authenticated Layout)
+
+Webサーバー: Nginx (Docker container)
 
 # 📊 主な機能
 
@@ -97,20 +112,27 @@
 ## 2. Docker (Laravel Sail) による開発環境の共通化
    チーム開発を意識し、OS 等の環境に左右されず、誰でもコマンド一つで同一の開発環境を構築できるよう Docker でパッケージ化しています。
 
-🗄 データベース設計
+## 3.構築時の課題解決
+- **ストレージ不足の解消**: 
+  初期構築時、AWS EBS（Elastic Block Store）のボリュームを 8GB から 20GB へ拡張し、OS側のパーティションおよびファイルシステムのリサイズ（`growpart`, `resize2fs`）を行うことで、安定した稼働環境を確保しました。
+- **セキュリティ**: 
+  AWS セキュリティグループの設定により、HTTP（80番ポート）および管理用SSH（22番ポート）以外の通信を遮断し、安全性を高めています。
+
+## 🗄 データベース設計
 案件（deals）を中心に、企業（companies）、ユーザー（users）、および変更履歴（activity_logs）が適切に紐づくリレーショナル設計を行っています。
 
-🏁 セットアップ（Laravel Sail 使用）
+# 🏁 セットアップ（Laravel Sail 使用）
 Docker Desktop が起動していることを確認してください。
 
 Bash
 
-# 1. クローン
+## 1. クローン
 
 git clone https://github.com/IIJIMA0712/sfa-app
+
 cd sfa-app
 
-# 2. 依存関係のインストール（Docker 上の Composer を利用）
+## 2. 依存関係のインストール（Docker 上の Composer を利用）
 
 docker run --rm \
  -u "$(id -u):$(id -g)" \
@@ -119,15 +141,15 @@ docker run --rm \
  laravelsail/php83-composer:latest \
  composer install --ignore-platform-reqs
 
-# 3. 環境設定
+## 3. 環境設定
 
 cp .env.example .env
 
-# 4. Sail の起動（バックグラウンド実行）
+## 4. Sail の起動（バックグラウンド実行）
 
 ./vendor/bin/sail up -d
 
-# 5. アプリケーション準備
+## 5. アプリケーション準備
 
 ./vendor/bin/sail artisan key:generate
 ./vendor/bin/sail artisan migrate --seed
