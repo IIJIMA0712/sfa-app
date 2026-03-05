@@ -11,10 +11,10 @@
 [デモサイトはこちら](http://15.134.223.66)
 
 - **テスト用ログイン情報(管理者)**:
-  - メールアドレス: `test@example.com` （※Seederで作成した実際のアドレスを記載）
+  - メールアドレス: `admin@example.com`
   - パスワード: `password`
 - **テスト用ログイン情報(一般ユーザー)**:
-  - メールアドレス: `test@example.com` （※Seederで作成した実際のアドレスを記載）
+  - メールアドレス: `kenichi32@example.org` 
   - パスワード: `password`
 
 
